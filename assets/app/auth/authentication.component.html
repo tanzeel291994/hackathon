@@ -1,0 +1,26 @@
+<header class="header">
+           
+    <div class="heading-box"></div>
+    <div class="register-box">
+        <div class="register-form">
+                    <router-outlet></router-outlet>
+                    
+                    <div class="form__group">
+                        <a class="form__anchor" [routerLink]="['signup']">Click here for register</a>
+                    </div>
+                    <div class="form__group">
+                        <a class="form__anchor" [routerLink]="['signin']">Click here for login</a>
+                    </div>
+        </div>    
+       
+    </div>
+    <div class="header__text-box">
+        <h1 class="heading-primary">
+            <span class="heading-primary--main">WE CONNECT</span>
+            <span class="heading-primary--sub">is where women get empowered</span>
+        </h1>
+    </div>
+<!--
+        <a href="#section-tours" class="btn btn--white btn--animated">Discover our tours</a>
+    </div>-->
+</header>
