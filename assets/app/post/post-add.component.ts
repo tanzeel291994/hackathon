@@ -1,31 +1,30 @@
-import { Component } from "@angular/core";
+import { Post } from './post.model';
+import { PostService } from './post.service';
+import { Component, ViewContainerRef } from "@angular/core";
+import { NgForm } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr';
 
 
 @Component({
     selector: 'app-post-add',
-    template: `
-    <div class="post-add-box">
-    <div class="form-group">
-            <label for="sel1">Purpose</label>
-            <select class="form-control post-add__select" id="sel1">
-              <option>General</option>
-              <option>Looking for Partners</option>
-              <option>Looking to Hire</option>
-            </select>
-    </div>
-    <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" class="form-control" id="title">
-    </div>
-    <div class="form-group">
-            <label for="info">About</label>
-            <textarea class="form-control" rows="4" id="info"></textarea>
-    </div>
-    
-    <button class="btn btn--green post-add__btn">Post</button>
-</div>
-    `
+    templateUrl:'./post-add.component.html'
 })
 export class PostAddComponent {
-   
+    //post: Post;
+    private viewContainerRef: ViewContainerRef;
+    constructor(public toastr: ToastsManager, viewContainerRef: ViewContainerRef,private postService: PostService) 
+    {
+        this.viewContainerRef = viewContainerRef;
+        this.toastr.setRootViewContainerRef(viewContainerRef);
+    }
+    onSubmit(form: NgForm) {
+            const post = new Post(form.value.type,form.value.title,form.value.text);
+            this.postService.addPost(post)
+                .subscribe(
+                    data => this.toastr.success('You are awesome!', 'Success!'),
+                    error =>  this.toastr.error('This is not good!', 'Oops!')
+                );
+
+        form.resetForm();
+    }
 }

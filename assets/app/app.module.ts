@@ -1,3 +1,4 @@
+import { PostService } from './post/post.service';
 import { FollowComponent } from './shared/follow.component';
 import { PostAddComponent } from './post/post-add.component';
 import { MeComponent } from './header/me/me.component';
@@ -7,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from "./app.component";
 
 import { AuthenticationComponent } from "./auth/authentication.component";
@@ -20,7 +21,7 @@ import { AuthService } from "./auth/auth.service";
 import { PostComponent } from './post/post.component';
 import { FindComponent } from './header/find/find.component';
 import { MyProfileComponent } from './header/me/myprofile.component';
-
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 @NgModule({
     declarations: [
         AppComponent,
@@ -41,11 +42,13 @@ import { MyProfileComponent } from './header/me/myprofile.component';
     imports: [
         BrowserModule,
         FormsModule,
+        BrowserAnimationsModule,
         routing,
         ReactiveFormsModule,
-        HttpModule
+        HttpModule,
+        ToastModule.forRoot()
     ],
-    providers: [AuthService],
+    providers: [AuthService,PostService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
