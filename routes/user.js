@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 
-router.post('/', function (req, res, next) {
+router.post('/signup', function (req, res, next) {
     var user = new User({
         //firstName: req.body.firstName,
         //lastName: req.body.lastName,
@@ -47,7 +47,8 @@ router.post('/signin', function(req, res, next) {
                 error: {message: 'Invalid login credentials'}
             });
         }
-        var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+        var token = jwt.sign({user: user},'secret', {expiresIn: 7200});
+        res.cookie('tracker',token);
         res.status(200).json({
             message: 'Successfully logged in',
             token: token,
@@ -56,4 +57,115 @@ router.post('/signin', function(req, res, next) {
     });
 });
 
+router.get('/u/:userId', function(req, res, next) {
+    User.findOne({_id: mongoose.Types.ObjectId(req.params.userId)}, function (err, user) {
+      if (err || ! user) return res.redirect('/');
+      var edit = (req.user && user.id == req.user.id);
+  
+      Post.paginate({user: mongoose.Types.ObjectId(req.params.userId)},{ page: 1, limit: 5 }, function (err, posts) {
+        if (err || ! user) return res.redirect('/');
+        User.find({_id: {$in: user.following}}, function (err, users) {
+          User.find({following: user._id}, function (err, followers) {
+            Album.find({user: user._id}).sort({created_at: -1}).populate('photos').exec(function (err, albums) {
+              return res.render('profile.html', {user: req.user, posts: posts, profileUser: user, edit: edit, followingUsers: users, followers: followers, albums: albums});
+            });
+          });
+        });
+      });
+    });
+  });
+
+
+
+router.put('/update/:id', function(req, res) {
+    // create mongose method to update a existing record into collection
+    let id = req.params.id;
+    var data = {
+    firstName : req.body.firstName,
+    lastName : req.body.lastName,
+    location : req.body.location,
+    occupation : req.body.occupation,
+    gender : req.body.gender,
+    intrest : req.body.intrest,
+    contact : req.body.contact
+    }
+  
+    // save the user
+   User.findByIdAndUpdate(id, {profile:data},{new: true}, function(err, user) {
+    if (err) throw err;
+    
+    console.log("user"+user);
+    console.log(data);
+    res.send('Successfully! user updated - '+user.profile.firstName);
+    });
+   });
+
+router.get('/view/:id', function(req, res) {
+    let id = req.params.id;
+    User.findById(id, function(err, user) {
+    if (err)
+    res.send(err)
+    
+    res.json(user);
+    });
+    
+   });
+
+
+  
+
+router.post('/follow/:id', function (req, res) {//id:me
+    if (! req.body.userId)
+     return res.send({message: 'Invalid request'}, 500);
+    req.user.following.push(mongoose.Types.ObjectId(req.body.userId));
+    req.user.save(function (err, user) {
+      if (err) return res.send(err, 500);
+      //return res.sendStatus(200);
+      res.status(status).send(body)
+    });
+  });
+
+
+
+
+  
+ 
 module.exports = router;
+
+
+/*
+router.post('/update1/:email', function (req, res) {
+    User.findOne({email: req.body.email}, function(err, user) {
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        if (user) {
+            User.update({_id: mongoose.Types.ObjectId(req.params.id)}, {profile: req.body}, function (err, result) {
+                if (err) return res.send(err, 500);
+                return res.send(result);
+              });
+        }
+   
+  });
+});
+
+
+
+ router.put('/follows/:id', function(req, res) {
+    // create mongose method to update a existing record into collection
+    let id = req.params.id;
+    var email= req.body.email;
+  
+    // save the user
+   User.findByIdAndUpdate(id,following[{email}] ,{new: true}, function(err, user) {
+    if (err) throw err;
+
+    res.send('Successfully! user updated');
+    });
+   });
+
+    
+*/
