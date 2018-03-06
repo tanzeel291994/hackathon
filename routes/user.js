@@ -2,8 +2,14 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-
+const key = require('../config/key');
+var mongoose = require('mongoose');
+var _ = require('lodash');
+//var upload = require('../helpers/upload');
+var Post = require('../models/Post');
 var User = require('../models/user');
+var Auth = require('../helpers/auth');
+
 
 router.post('/signup', function (req, res, next) {
     var user = new User({
@@ -117,15 +123,16 @@ router.get('/view/:id', function(req, res) {
 router.post('/follow/:id', function (req, res) {//id:me
     if (! req.body.userId)
      return res.send({message: 'Invalid request'}, 500);
-    req.user.following.push(mongoose.Types.ObjectId(req.body.userId));
-    req.user.save(function (err, user) {
-      if (err) return res.send(err, 500);
-      //return res.sendStatus(200);
-      res.status(status).send(body)
-    });
+    
+     User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$push: {posts: mongoose.Types.ObjectId(req.body.userId)}}, function (err, result) {
+        if (err) return res.send(err, 500);
+        res.status(201).json({
+          message: 'followed',
+        //  obj: result
+      });
+      });    
+  
   });
-
-
 
 
   

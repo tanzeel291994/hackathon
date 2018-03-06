@@ -9,6 +9,7 @@ const key = require('./config/key');
 var appRoutes = require('./routes/app');
 var userRoutes = require('./routes/user'); 
 var postRoutes = require('./routes/post');
+var notificationRoutes = require('./routes/notification');
 var User = require('./models/user');
 //const MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
@@ -48,6 +49,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
     next();
 });
+app.use('/notification', notificationRoutes);
 app.use('/post', postRoutes);
 app.use('/user', userRoutes);
 app.use('/', appRoutes);
