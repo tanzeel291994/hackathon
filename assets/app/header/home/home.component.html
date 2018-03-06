@@ -1,0 +1,17 @@
+    <div class="u-display-flex">
+        <my-follow></my-follow>
+        <main class="my-view">
+                <div class="my-view__tabs">
+                        <ul class="nav nav-tabs nav-tabs-style-2">
+                          <li routerLinkActive="active"><a [routerLink]="['posts']">Posts</a></li>
+                          <li routerLinkActive="active"><a [routerLink]="['addPost']">Add a post</a></li>
+                        </ul>
+                      
+                        <div class="tab-content">
+                            <router-outlet></router-outlet>
+                        </div>
+                </div>
+         
+         
+         </main>
+        </div>

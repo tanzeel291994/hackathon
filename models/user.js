@@ -7,7 +7,11 @@ var schema = new Schema({
     //lastName: {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
-    followers: [{type: Schema.Types.ObjectId, ref: 'User'}]
+    followers: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    following:[{type: Schema.Types.ObjectId, ref: 'User'}],
+    posts:[{type: Schema.Types.ObjectId, ref: 'Post'}],
+    connections:[{type: Schema.Types.ObjectId, ref: 'User'}],
+    // profile details
 });
 
 schema.plugin(mongooseUniqueValidator);

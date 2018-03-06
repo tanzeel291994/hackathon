@@ -1,0 +1,35 @@
+<div class="main-wrapper">
+    <div class="app-container">
+        <header class="dashboard-header">
+          <img src="/img/logo.png" alt="trillo logo" class="logo">
+          <main class="my-mview">
+               <div class="my-mview__tabs">
+                       <ul class="nav nav-tabs nav-tabs-style-1">
+                         <li routerLinkActive="active"><a [routerLink]="['home']" >Home</a></li>
+                         <li routerLinkActive="active"><a [routerLink]="['find']">Find</a></li>
+                         <li routerLinkActive="active"><a [routerLink]="['me']">Me</a></li>
+                       </ul>
+                     
+                      
+               </div>
+        
+               <nav class="user-nav">
+                       <div class="user-nav__icon-box">
+                        <img src="/img/notifications-button.png" class="user-nav__icon">
+                        <span class="user-nav__notification">7</span>
+                       </div>
+                       <div class="user-nav__user">
+                           <img src="/img/user.jpg" alt="user photo" class="user-nav__user-photo">
+                           <span class="user-nav__user-name">Mary</span>
+                       </div>
+                   </nav>
+        </main>
+         
+        </header>
+        <div class="content">
+            <div class="tab-content tab-content-sub">
+                <router-outlet></router-outlet>
+            </div>
+    </div>
+   </div>
+   </div>
