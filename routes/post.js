@@ -9,7 +9,7 @@ var Post = require('../models/Post');
 //var User = require('../models/User');
 var Auth = require('../helpers/auth');
 
-
+//tested
 router.get('/', function(req, res, next) {
   if (!req.user) {
       return res.send("Please login again");
@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-
+//tested
 router.post('/add',Auth.authJson ,function (req, res,next) {
  //console.log(User);
  //var post = new Post(postData(req.body));

@@ -11,7 +11,7 @@ var User = require('../models/User');
 var Auth = require('../helpers/auth');
 
 
-
+//tested
 router.post('/signup', function (req, res, next) {
     var user = new User({
         //firstName: req.body.firstName,
@@ -34,6 +34,7 @@ router.post('/signup', function (req, res, next) {
     });
 });
 
+//tested
 router.post('/signin', function(req, res, next) {
     User.findOne({email: req.body.email}, function(err, user) {
         if (err) {
@@ -63,6 +64,7 @@ router.post('/signin', function(req, res, next) {
         });
     });
 });
+
 
 router.get('/u/:userId', function(req, res, next) {
     User.findOne({_id: mongoose.Types.ObjectId(req.params.userId)}, function (err, user) {
@@ -120,11 +122,9 @@ router.get('/view/:id', function(req, res) {
 
 
   
-
+//tested 
 router.post('/follow/:id', function (req, res) {   //id: the one who is been followed 
-   // if (! req.body.userId)
-    // return res.send({message: 'Invalid request'}, 500);
-
+ //Also need to add an entry in notifications here.
      User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$push: {following: mongoose.Types.ObjectId(req.param.id)}}, function (err, result) {
         if (err) return res.send(err, 500);
         res.status(201).json({
