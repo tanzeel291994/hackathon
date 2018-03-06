@@ -7,8 +7,9 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 //var upload = require('../helpers/upload');
 var Post = require('../models/Post');
-var User = require('../models/user');
+var User = require('../models/User');
 var Auth = require('../helpers/auth');
+
 
 
 router.post('/signup', function (req, res, next) {
@@ -120,14 +121,14 @@ router.get('/view/:id', function(req, res) {
 
   
 
-router.post('/follow/:id', function (req, res) {//id:me
-    if (! req.body.userId)
-     return res.send({message: 'Invalid request'}, 500);
-    
-     User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$push: {posts: mongoose.Types.ObjectId(req.body.userId)}}, function (err, result) {
+router.post('/follow/:id', function (req, res) {   //id: the one who is been followed 
+   // if (! req.body.userId)
+    // return res.send({message: 'Invalid request'}, 500);
+
+     User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$push: {following: mongoose.Types.ObjectId(req.param.id)}}, function (err, result) {
         if (err) return res.send(err, 500);
         res.status(201).json({
-          message: 'followed',
+          message: 'followed'
         //  obj: result
       });
       });    
@@ -174,5 +175,4 @@ router.post('/update1/:email', function (req, res) {
     });
    });
 
-    
-*/
+    */

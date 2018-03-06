@@ -1,7 +1,8 @@
-"use strict"
-const Conversation = require('../models/conversation'),  
-      Message = require('../models/message'),
-      User = require('../models/user');
+//"use strict"
+/*
+const Conversation = require('../models/Conversation'),  
+      Message = require('../models/Message'),
+      User = require('../models/User');
 
 exports.getConversations = function(req, res, next) {  
   // Only return one message from each conversation to display as snippet
@@ -35,4 +36,4 @@ exports.getConversations = function(req, res, next) {
           });
       });
   });
-}
+}*/

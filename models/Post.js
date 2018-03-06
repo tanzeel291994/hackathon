@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 //var random = require('mongoose-simple-random');
 var mongoosePaginate = require('mongoose-paginate'); 
-var User = require('./user.js');
+
 
 var postSchema = new Schema({
   text: String,
@@ -14,8 +14,7 @@ var postSchema = new Schema({
     type: Number,
     default: 1 //1,2,3  genral,to hire, to work 
   },
-  // user: mongoose.Schema.Types.ObjectId,
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  //user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created_at: {type: Date,default: Date.now}
 })
 

@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 const key = require('../config/key');
 var mongoose = require('mongoose');
-var User = require('../models/user');
+//var User = require('../models/User');
 var Notification = require('../models/Notification');
 var Auth = require('../helpers/auth');
 
