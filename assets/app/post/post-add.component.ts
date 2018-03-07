@@ -10,7 +10,7 @@ import { ToastsManager } from 'ng2-toastr';
     templateUrl:'./post-add.component.html'
 })
 export class PostAddComponent {
-    //post: Post;
+    post: Post;
     private viewContainerRef: ViewContainerRef;
     constructor(public toastr: ToastsManager, viewContainerRef: ViewContainerRef,private postService: PostService) 
     {
@@ -19,10 +19,11 @@ export class PostAddComponent {
     }
     onSubmit(form: NgForm) {
             const post = new Post(form.value.type,form.value.title,form.value.text,false,false);
+            console.log(form.value.title);
             this.postService.addPost(post)
                 .subscribe(
-                    data => this.toastr.success('You are awesome!', 'Success!'),
-                    error =>  this.toastr.error('This is not good!', 'Oops!')
+                    data => this.toastr.success('Posted', 'Success!'),
+                    error =>  this.toastr.error('Try again', 'Oops!')
                 );
 
         form.resetForm();

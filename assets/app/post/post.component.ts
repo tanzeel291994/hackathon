@@ -1,3 +1,4 @@
+
 import { ToastsManager } from 'ng2-toastr';
 import { PostService } from './post.service';
 import { Post } from './post.model';
@@ -14,12 +15,13 @@ import { Component, Input, ViewContainerRef } from '@angular/core';
 })
 export class PostComponent {
     @Input() post: Post;
-
+  
     private viewContainerRef: ViewContainerRef;
     constructor(public toastr: ToastsManager, viewContainerRef: ViewContainerRef,private postService: PostService) 
     {
         this.viewContainerRef = viewContainerRef;
         this.toastr.setRootViewContainerRef(viewContainerRef);
+       
     }
 /*
     onEdit() {

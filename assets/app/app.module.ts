@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppComponent } from "./app.component";
-
+import {TimeAgoPipe} from 'time-ago-pipe';
 import { AuthenticationComponent } from "./auth/authentication.component";
 //import { HeaderComponent } from "./header/header.component";
 import { routing } from "./app.routing";
@@ -39,6 +39,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
         HomeComponent,
         LogoutComponent,
         SignupComponent,
+        TimeAgoPipe,
         SigninComponent
     ],
     imports: [

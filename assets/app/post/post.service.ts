@@ -9,8 +9,9 @@ import { Post } from "./post.model";
 export class PostService {
     private posts: Post[] = [];
     messageIsEdit = new EventEmitter<Post>();
-
+   // private timeAgo:TimeAgo;
     constructor(private http: Http) {
+     //   this.timeAgo = new TimeAgo('en-US');
     }
 
     addPost(post: Post) {
