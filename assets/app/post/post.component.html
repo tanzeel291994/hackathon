@@ -9,19 +9,30 @@
                </div>
              <!--  <div class="review__rating">9.3</div>-->
        </figcaption>
+       <h5 class="post__type">{{post.type}}</h5>
        <h3 class="post__title">{{post.title}}</h3>
        <p class="post__text">{{post.text}} </p>
     <!--<img src="/img/hotel-1.jpg" alt="" class="post__img">-->
    </div>
    <div class="post__actions">
-           <div class="post__tool">
-                  <span>10</span> 
-              <img class="post__tool--img" src="/img/email.png" alt="">
-               
-           </div>
-           <div class="post__tool">
-                  <span>10</span> 
-               <img class="post__tool--img" src="/img/like.png" alt="">
-           </div>
-       </div>
+    <div class="post__tool">
+           <span>{{post.postlikes}}</span> 
+           <button class="post__tool-btn tool-tip" (click)="post.liked ? postunLike(post): postLike(post)">
+            <img  *ngIf="!post.liked" class="post__tool--img" src="/img/like.svg" alt="">
+            <img *ngIf="post.liked" class="post__tool--img" src="/img/like-fill.svg" alt=""> 
+            <span *ngIf="!post.liked" class="tool-tiptext">Like</span>
+            <span *ngIf="post.liked" class="tool-tiptext">Un Like</span>
+         </button>
+    </div>
+    <div class="post__tool">
+           <span>{{post.postintrests}}</span>
+           <button class="post__tool-btn tool-tip" (click)="post.intrested ? postunInterest(post):postInterest(post)">
+            <img  *ngIf="!post.intrested" class="post__tool--img" src="/img/email.svg" alt="">
+            <img *ngIf="post.intrested" class="post__tool--img" src="/img/email-fill.svg" alt=""> 
+            <span *ngIf="!post.intrested" class="tool-tiptext">Intrested</span>
+            <span *ngIf="post.intrested" class="tool-tiptext">Not Interested</span>
+         </button>
+
+    </div>
+</div>
 </div>

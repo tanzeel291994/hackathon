@@ -18,7 +18,7 @@ export class PostAddComponent {
         this.toastr.setRootViewContainerRef(viewContainerRef);
     }
     onSubmit(form: NgForm) {
-            const post = new Post(form.value.type,form.value.title,form.value.text);
+            const post = new Post(form.value.type,form.value.title,form.value.text,false,false);
             this.postService.addPost(post)
                 .subscribe(
                     data => this.toastr.success('You are awesome!', 'Success!'),

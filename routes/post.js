@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
       if (err) return res.send(err);
       res.status(200).json({
           message: 'Success',
-          obj: {posts:posts}
+          obj: {posts:posts ,user:req.user}
       });
   });
 });
@@ -54,13 +54,33 @@ router.post('/add',Auth.authJson ,function (req, res,next) {
   });
 });
 
-router.post('/:id/like', function (req, res, next) {
-  Post.update({_id: mongoose.Types.ObjectId(req.params.id)}, {$push: {likes: mongoose.Types.ObjectId(req.body.user)}}, function (err, result) {
+router.get('/:id/like', function (req, res, next) {
+  Post.update({_id: mongoose.Types.ObjectId(req.params.id)}, {$push: {likes: mongoose.Types.ObjectId(req.user._id)}}, function (err, result) {
     if (err) return res.send(err, 500);
     return res.send(result);
   });
 });
-  
+
+router.get('/:id/un-like', function (req, res, next) {
+  Post.update({_id: mongoose.Types.ObjectId(req.params.id)}, {$pull: {likes: mongoose.Types.ObjectId(req.user._id)}}, function (err, result) {
+    if (err) return res.send(err, 500);
+    return res.send(result);
+  });
+});
+
+router.get('/:id/intrest', function (req, res, next) {
+  Post.update({_id: mongoose.Types.ObjectId(req.params.id)}, {$push: {intrested: mongoose.Types.ObjectId(req.user._id)}}, function (err, result) {
+    if (err) return res.send(err, 500);
+    return res.send(result);
+  });
+});
+router.get('/:id/un-intrest', function (req, res, next) {
+  Post.update({_id: mongoose.Types.ObjectId(req.params.id)}, {$pull: {intrested: mongoose.Types.ObjectId(req.user._id)}}, function (err, result) {
+    if (err) return res.send(err, 500);
+    return res.send(result);
+  });
+});
+
 /*
 
   router.delete('/:id', key, function (req, res) {
@@ -99,12 +119,7 @@ router.post('/:id/like', function (req, res, next) {
   });
 
 
-  router.post('/:id/actions/like', function (req, res, next) {
-    Post.update({_id: mongoose.Types.ObjectId(req.params.id)}, {$push: {likes: mongoose.Types.ObjectId(req.body.user)}}, function (err, result) {
-      if (err) return res.send(err, 500);
-      return res.send(result);
-    });
-  });
+  
   router.post('/:id/actions/un-like', function (req, res, next) {
     Post.update({_id: mongoose.Types.ObjectId(req.params.id)}, {$pullAll: {likes: [mongoose.Types.ObjectId(req.body.user)]}}, function (err, result) {
       if (err) return res.send(err, 500);
@@ -120,10 +135,7 @@ router.post('/:id/like', function (req, res, next) {
     });
   });
    */
-  function postData (post) {
-    post.user = mongoose.Types.ObjectId(post.user);
-    return post;
-  }
+
   
   module.exports = router;
  
