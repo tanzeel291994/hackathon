@@ -86,9 +86,9 @@ router.get('/u/:userId', function(req, res, next) {
 
 
 
-router.put('/update/:id', function(req, res) {
+router.put('/update', function(req, res) {
     // create mongose method to update a existing record into collection
-    let id = req.params.id;
+    let id = req.user._id;
     var data = {
     firstName : req.body.firstName,
     lastName : req.body.lastName,
@@ -98,13 +98,10 @@ router.put('/update/:id', function(req, res) {
     intrest : req.body.intrest,
     contact : req.body.contact
     }
-  
+  console.log(data);
     // save the user
    User.findByIdAndUpdate(id, {profile:data},{new: true}, function(err, user) {
     if (err) throw err;
-    
-    console.log("user"+user);
-    console.log(data);
     res.send('Successfully! user updated - '+user.profile.firstName);
     });
    });

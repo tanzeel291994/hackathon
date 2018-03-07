@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var _ = require('lodash');
 //var upload = require('../helpers/upload');
 var Post = require('../models/Post');
-//var User = require('../models/User');
+var User = require('../models/User');
 var Auth = require('../helpers/auth');
 
 //tested
@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
   }
   var ids = req.user.following;
   ids.push(req.user._id); //allows you to see your own posts
-  Post.find({user: {$in: ids}}).populate('User').sort({created_at: -1}).exec(function (err, posts) {
+  Post.find({user: {$in: ids}}).populate('user').sort({created_at: -1}).exec(function (err, posts) {
       if (err) return res.send(err);
       res.status(200).json({
           message: 'Success',
@@ -43,7 +43,7 @@ router.post('/add',Auth.authJson ,function (req, res,next) {
               error: err
           });
       }
-  
+  console.log(result);
   User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$push: {posts: mongoose.Types.ObjectId(result._id)}}, function (err, result2) {
         if (err) return res.send(err, 500);
         res.status(201).json({

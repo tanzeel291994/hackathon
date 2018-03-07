@@ -33,17 +33,18 @@ export class PostService {
     }
 
     getPosts() {
-        return this.http.get('http://localhost:3000/posts')
+        return this.http.get('http://localhost:3000/post')
             .map((response: Response) => {
-                const posts = response.json().obj;
+                const posts = response.json().obj.posts;
+                console.log(posts);
                 let transformedPosts: Post[] = [];
                 for (let post of posts) {
                     transformedPosts.push(new Post(
                         post.type,
                         post.title,
                         post.text,
-                        post.user.firstName,
-                        post.user.expertise, ////edit this from database
+                        post.user.profile.firstName+" "+post.user.profile.lastName ,
+                        post.user.profile.occupation, ////edit this from database
                         post.postcreated,                         
                         post._id,
                         post.user._id)

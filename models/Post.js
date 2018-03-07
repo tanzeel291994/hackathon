@@ -14,7 +14,7 @@ var postSchema = new Schema({
     type: Number,
     default: 1 //1,2,3  genral,to hire, to work 
   },
-  //user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   created_at: {type: Date,default: Date.now}
 })
 

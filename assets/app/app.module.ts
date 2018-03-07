@@ -1,3 +1,4 @@
+import { PostListComponent } from './post/post-list.component';
 import { PostService } from './post/post.service';
 import { FollowComponent } from './shared/follow.component';
 import { PostAddComponent } from './post/post-add.component';
@@ -31,6 +32,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
         PostComponent,
         PostAddComponent,
         MyProfileComponent,
+        PostListComponent,
         MeComponent,
         FindComponent,
         FollowComponent,
