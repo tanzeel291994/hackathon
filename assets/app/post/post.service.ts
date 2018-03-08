@@ -8,17 +8,16 @@ import { Post } from "./post.model";
 @Injectable()
 export class PostService {
     private posts: Post[] = [];
-    messageIsEdit = new EventEmitter<Post>();
-   // private timeAgo:TimeAgo;
+   // messageIsEdit = new EventEmitter<Post>();
+
     constructor(private http: Http) {
-     //   this.timeAgo = new TimeAgo('en-US');
+    
     }
 
     addPost(post: Post) {
         const body = JSON.stringify(post);
         const headers = new Headers({'Content-Type': 'application/json'});
-       // const token = localStorage.getItem('token')? '?token=' + localStorage.getItem('token'): '';
-
+      
         return this.http.post('http://localhost:3000/post/add', body, {headers: headers})  //check this
             .map((response: Response) => {
                 const result = response.json();

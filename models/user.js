@@ -8,14 +8,19 @@ var user = new Schema({
     dp: {type: String,default: '/dp/default.jpg'},   
     //created_at: { type: Date, default: Date.now }, //not reqired
     profile: {
-        
             firstName: String,
             lastName:String,
             location: String,
             occupation:String,
             gender: String,
-            intrest:String,       
-            contact: String
+            intrests:[mongoose.Schema.Types.String],
+            yob:Number,
+            intrestInfo:String,
+            language:String,
+            status:String,
+            qualification:String,
+            field:String
+           // contact: String
            // dob: Date
           },
     category:Number,//to hire or work 

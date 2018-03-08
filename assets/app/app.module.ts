@@ -1,3 +1,4 @@
+import { ProfileService } from './header/profile.service';
 import { PostListComponent } from './post/post-list.component';
 import { PostService } from './post/post.service';
 import { FollowComponent } from './shared/follow.component';
@@ -51,7 +52,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
         HttpModule,
         ToastModule.forRoot()
     ],
-    providers: [AuthService,PostService],
+    providers: [AuthService,PostService,ProfileService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

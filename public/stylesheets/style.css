@@ -129,6 +129,12 @@ body {
 .u-display-flex {
   display: flex !important; }
 
+.u-flex-25 {
+  flex: 1; }
+
+.u-opacity-none {
+  opacity: 0; }
+
 .bg-video {
   position: absolute;
   top: 0;
@@ -474,6 +480,7 @@ body {
 
 .profile-box {
   padding: 3rem;
+  padding-top: 0;
   display: flex;
   flex-direction: column; }
 
@@ -485,6 +492,22 @@ body {
     flex: 1 0 33.33%; }
   .profile-flex__btn {
     align-self: flex-end; }
+
+.profile__photo {
+  margin-bottom: 2rem;
+  position: relative;
+  width: 10rem;
+  display: inline-block; }
+  .profile__photo--user {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #777; }
+  .profile__photo--change {
+    position: absolute;
+    height: 2rem;
+    width: 2rem;
+    bottom: -10px;
+    right: -10px; }
 
 .profile-card {
   width: 22rem;

@@ -1,54 +1,86 @@
 <div class="profile-box">
-    <div class="profile-flex">
-            <div class="form-group profile-flex-2 u-margin-right-small">
-                    <label for="fname">First Name</label>
-                    <input type="text" class="form-control" id="fname">
+    <div class="profile__photo">
+        <img class="profile__photo--user"src="/img/user-2.jpg" alt="">
+        <img class="profile__photo--change"src="/img/photo-camera.svg" alt="">
+        
+      </div>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="profile-flex">
+          <div class="form-group profile-flex-2 u-margin-right-small">
+                  <label for="firstName">First Name</label>
+                  <input type="text" class="form-control" id="firstName" [ngModel]="profile?.firstName" name="firstName">
+          </div>
+          <div class="form-group profile-flex-2">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" class="form-control" [ngModel]="profile?.lastName" id="lastName" name="lastName">
+          </div>
+  </div>
+  <div class="form-group">
+          <div class="profile-flex">
+              <div class="form-group u-margin-right-small">
+                  <label for="interests1">1.Interest</label>
+                  <select class="form-control" id="interests1" [ngModel]="profile?.intrests[0]" name="interests1">
+                    <option *ngFor="let i of Intrests" [ngValue]="i">{{i}}</option>
+                  </select>
+              </div>
+              <div class="form-group u-margin-right-small">
+                     <label for="interests2" class="">2.Interests</label>
+                     <select class="form-control" id="interests2" [ngModel]="profile?.intrests[1]"  name="interests2" required>
+                        <option *ngFor="let i of Intrests" [ngValue]="i">{{i}}</option>
+                      </select>
+              </div>
+              <div class="form-group u-flex-25">
+                      <label for="intrestInfo" class="u-opacity-none">Interests</label>
+                      <input type="text" class="form-control" id="intrestInfo" [ngModel]="profile?.intrestInfo" name="intrestInfo" placeholder="More about your Interests">
+              </div>
+          </div>
+  </div>
+  <div class="form-group">
+          <div class="profile-flex">
+              <div class="form-group u-margin-right-small">
+                  <label for="status">Status</label>
+                  <select class="form-control" id="status" [ngModel]="profile?.status"  name="status" required>
+                    <option *ngFor="let i of Status" [ngValue]="i">{{i}}</option>
+                  </select>
+              </div>
+              <div class="form-group  u-margin-right-small">
+                <label for="year">Year of birth</label>
+                <input type="number" class="form-control" id="year" [ngModel]="profile?.year" name="year" placeholder="Ex: 1994">
             </div>
-            <div class="form-group profile-flex-2">
-                    <label for="lname">Last Name</label>
-                    <input type="text" class="form-control" id="lname">
-            </div>
-    </div>
-   
-    <div class="form-group">
-            <div class="profile-flex">
-                <div class="form-group u-margin-right-small">
-                    <label for="status">Status</label>
-                    <select class="form-control" id="status">
-                        <option>Single</option>
-                        <option>Married</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                        <label for="language">Mother Tounge</label>
-                        <select class="form-control" id="language">
-                            <option>Marathi</option>
-                            <option>Gujarati</option>
-                            <option>Kanad</option>
-                            <option>Malyalam</option>
-                            <option>Punjabi</option>
-                            <option>Bihari</option>
-                        </select>
-                </div>
-            </div>
-    </div>
-    <div class="form-group">
-            <div class="profile-flex">
-                <div class="form-group u-margin-right-small">
-                    <label for="qualification">Qualification</label>
-                    <select class="form-control" id="qualification">
-                        <option>Bachelor</option>
-                        <option>Masters</option>
-                        <option>Doctarate</option>
-                        <option>Matriculate</option>
-                        <option>None</option>
-                    </select>
-                </div>
-            <div class="form-group">
-                    <label for="field">Field</label>
-                    <input type="text" class="form-control" id="field">
-            </div>
-            </div>
-    </div>
-    <button class="btn btn--green profile-flex__btn">Save</button>
-    </div>
+              <div class="form-group  u-margin-right-small">
+                      <label for="language">Mother Tounge</label>
+                      <select class="form-control" id="language" [ngModel]="profile?.language"  name="language" required>
+                        <option *ngFor="let i of Languages" [ngValue]="i">{{i}}</option>
+                      </select>
+              </div>
+              <div class="form-group">
+                      <label for="location">Location</label>
+                      <select class="form-control" id="location" [ngModel]="profile?.location"  name="location" required>
+                        <option *ngFor="let i of Locations" [ngValue]="i">{{i}}</option>
+                      </select>
+              </div>
+          </div>
+  </div>
+  <div class="form-group">
+          <div class="profile-flex">
+              <div class="form-group u-margin-right-small">
+                  <label for="qualification">Qualification</label>
+                  <select class="form-control" id="qualification" [ngModel]="profile?.qualification"  name="qualification" required>
+                    <option *ngFor="let i of Qualifications" [ngValue]="i">{{i}}</option>
+                  </select>
+              </div>
+          <div class="form-group u-margin-right-small">
+                  <label for="field">Field</label>
+                  <input type="text" class="form-control" id="field" name="field" [ngModel]="profile?.field">
+          </div>
+          <div class="form-group">
+              <label for="occupation">Occupation</label>
+              <select class="form-control" id="occupation" [ngModel]="profile?.occupation"  name="occupation" required>
+                <option *ngFor="let i of Occupations" [ngValue]="i">{{i}}</option>
+              </select>
+          </div>
+          </div>
+  </div>
+  <button class="btn btn--green profile-flex__btn">Save</button>
+  </form>
+  </div>

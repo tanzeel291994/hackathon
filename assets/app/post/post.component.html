@@ -29,7 +29,7 @@
            <button class="post__tool-btn tool-tip" (click)="post.intrested ? postunInterest(post):postInterest(post)">
             <img  *ngIf="!post.intrested" class="post__tool--img" src="/img/email.svg" alt="">
             <img *ngIf="post.intrested" class="post__tool--img" src="/img/email-fill.svg" alt=""> 
-            <span *ngIf="!post.intrested" class="tool-tiptext">Intrested</span>
+            <span *ngIf="!post.intrested" class="tool-tiptext">Interested</span>
             <span *ngIf="post.intrested" class="tool-tiptext">Not Interested</span>
          </button>
 
