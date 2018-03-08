@@ -56,5 +56,36 @@ export class ProfileService {
             })
             .catch((error: Response) => Observable.throw(error.json()));
             
-        }  
+        }
+        searchProfile(term) {
+            return this.http.get('http://localhost:3000/user/search-user/'+term)
+                .map((response: Response) => {
+                   console.log(response);
+                    const profiles = response.json();
+                    //const userId = response.json().obj._id;
+                  
+                    let transformedProfile: Profile[]=[];
+                    for (let p of profiles) {
+                       // console.log(this.checkUserLikedPost(post.likes,user));
+                       let profile = p.profile;
+                       transformedProfile.push(new Profile(
+                            profile.firstName,
+                            profile.lastName,
+                            profile.language,
+                            profile.yob,
+                            profile.status,
+                            profile.occupation,
+                            profile.qualification,
+                            profile.field,
+                            profile.intrests,
+                            profile.location,
+                            profile.intrestInfo,
+                            p._id)
+                    );
+                }
+                    return transformedProfile;
+                })
+                .catch((error: Response) => Observable.throw(error.json()));
+                
+            }    
 }

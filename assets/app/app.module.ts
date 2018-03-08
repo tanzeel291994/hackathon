@@ -1,3 +1,4 @@
+import { ProfileComponent } from './header/find/profile.component';
 import { ProfileService } from './header/profile.service';
 import { PostListComponent } from './post/post-list.component';
 import { PostService } from './post/post.service';
@@ -33,6 +34,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
         PostComponent,
         PostAddComponent,
         MyProfileComponent,
+        ProfileComponent,
         PostListComponent,
         MeComponent,
         FindComponent,

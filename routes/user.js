@@ -138,6 +138,7 @@ router.post('/follow/:id', function (req, res) {   //id: the one who is been fol
       });    
   
   });
+  //tested
   router.get('/search-user/:term', Auth.authRedirect, function (req, res) {
     if (! req.params.term) return res.send([], 500);
     var nameRegex = new RegExp(req.params.term, 'ig');
@@ -153,10 +154,6 @@ router.post('/follow/:id', function (req, res) {   //id: the one who is been fol
     });
   });
   
-  /*User.find({ $or : [{name: nameRegex, _id: {$ne: req.user._id}},
-    {intrests:nameRegex,_id: {$ne: req.user._id}},
-    {occupation:nameRegex,_id: {$ne: req.user._id}}
-    ]} */
 
   
  
