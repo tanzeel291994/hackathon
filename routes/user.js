@@ -105,7 +105,7 @@ router.put('/update', function(req, res) {
         intrestInfo:req.body.intrestInfo
 
     }
-    console.log(data);
+    //console.log(data);
    User.findByIdAndUpdate(id, {profile:data},{new: true}, function(err, user) {
     if (err) throw err;
     //res.send('Successfully! user updated - '+user);
@@ -113,6 +113,7 @@ router.put('/update', function(req, res) {
     });
 });
 
+//tested
 router.get('/my-profile/', function(req, res) {
     let id = req.user._id;
     User.findById(id, function(err, user) {
@@ -125,9 +126,6 @@ router.get('/my-profile/', function(req, res) {
     });
     
    });
-
-
-  
 //tested 
 router.post('/follow/:id', function (req, res) {   //id: the one who is been followed 
  //Also need to add an entry in notifications here.
@@ -140,7 +138,25 @@ router.post('/follow/:id', function (req, res) {   //id: the one who is been fol
       });    
   
   });
-
+  router.get('/search-user/:term', Auth.authRedirect, function (req, res) {
+    if (! req.params.term) return res.send([], 500);
+    var nameRegex = new RegExp(req.params.term, 'ig');
+   //var nameRegex=req.params.term;
+   User.find({ $or : [{"profile.firstName": nameRegex, _id: {$ne: req.user._id}},
+    {"profile.intrests":nameRegex,_id: {$ne: req.user._id}},
+    {"profile.occupation":nameRegex,_id: {$ne: req.user._id}},
+    {"profile.location":nameRegex,_id: {$ne: req.user._id}}
+    ]}
+    , function (err, users) {
+      if (err) return res.send(err, 500);
+      res.send(users);
+    });
+  });
+  
+  /*User.find({ $or : [{name: nameRegex, _id: {$ne: req.user._id}},
+    {intrests:nameRegex,_id: {$ne: req.user._id}},
+    {occupation:nameRegex,_id: {$ne: req.user._id}}
+    ]} */
 
   
  

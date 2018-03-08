@@ -36,7 +36,6 @@ export class MyProfileComponent {
                 form.value.location,
                 form.value.intrestInfo
             );
-           // console.log(form.value.title);
             this.profileService.upadateProfile(profile)
                 .subscribe(
                     data => this.toastr.success('profile updated', 'Success!'),
