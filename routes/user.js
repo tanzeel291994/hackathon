@@ -177,6 +177,26 @@ router.post('/follow', function (req, res) {   //id: the one who is been followe
     });
   });
   
+  router.get('/whotoFollow/', function (req, res) {
+    if (! req.user._id) return res.send([], 500);
+    User.findById(req.user._id, function(err, user) {
+        if (err) res.send(err)
+        User.find({ $or : [
+        {"profile.intrests":user.profile.intrests[0],_id: {$ne: req.user._id}},
+        {"profile.intrests":user.profile.intrests[1],_id: {$ne: req.user._id}}, //could be done better
+        {"profile.location":user.profile.location,_id: {$ne: req.user._id}}
+        ]}
+        , function (err, users) {
+          if (err) return res.send(err, 500);
+          res.status(201).json({
+            userId: req.user._id,
+            obj: users
+        });
+        
+    });
+});
+  });
+ 
 
   
  
