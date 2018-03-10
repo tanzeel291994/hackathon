@@ -24,11 +24,12 @@ var user = new Schema({
            // dob: Date
           },
     category:Number,//to hire or work 
-    //followers: [{type: Schema.Types.ObjectId, ref: 'User'}], //not required
-    following: [mongoose.Schema.Types.ObjectId],
+    followers: [mongoose.Schema.Types.ObjectId],
+   // following: [{type:mongoose.Schema.Types.ObjectId,ref:'User'}],
+   following: [mongoose.Schema.Types.ObjectId],
     posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],
-    messages: [{type: Schema.Types.ObjectId, ref: 'Message'}],
-    notifications: [{type: Schema.Types.ObjectId, ref: 'Notification'}]
+   // messages: [{type: Schema.Types.ObjectId, ref: 'Message'}],
+    //notifications: [{type: Schema.Types.ObjectId, ref: 'Notification'}]
 });
 
 user.plugin(mongooseUniqueValidator);

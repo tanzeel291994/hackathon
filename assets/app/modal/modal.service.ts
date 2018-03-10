@@ -1,30 +1,38 @@
 import { Injectable } from '@angular/core';
 import * as _ from 'underscore';
+import { Http } from '@angular/http';
+import { Profile } from '../header/profile.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ModalService {
-    private modals: any[] = [];
-
-    add(modal: any) {
-        // add modal to array of active modals
-        this.modals.push(modal);
+    //post: Post;
+    constructor(private http: Http) {
+    
     }
 
-    remove(id: string) {
-        // remove modal from array of active modals
-        let modalToRemove = _.findWhere(this.modals, { id: id });
-        this.modals = _.without(this.modals, modalToRemove);
+    followProfile(profile: Profile) {
+        const body = JSON.stringify(profile);
+        const headers = new Headers({'Content-Type': 'application/json'});
+      
+        return this.http.post('http://localhost:3000/user/follow/'+profile.userId,headers)  
+            .map((response: any) => {
+                const result = response.json();
+                return result; 
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+    unfollowProfile(profile: Profile) {
+       // const body = JSON.stringify(profile);
+        const headers = new Headers({'Content-Type': 'application/json'});
+      
+        return this.http.post('http://localhost:3000/user/unfollow/'+profile.userId,headers)  
+            .map((response: any) => {
+                const result = response.json();
+                return result; 
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
-    open(id: string) {
-        // open modal specified by id
-        let modal = _.findWhere(this.modals, { id: id });
-        modal.open();
-    }
-
-    close(id: string) {
-        // close modal specified by id
-        let modal = _.find(this.modals, { id: id });
-        modal.close();
-    }
+    
 }

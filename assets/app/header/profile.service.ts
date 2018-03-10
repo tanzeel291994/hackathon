@@ -31,6 +31,7 @@ export class ProfileService {
         return this.http.get('http://localhost:3000/user/my-profile')
             .map((response: Response) => {
                
+                const followers = response.json().obj.followers;
                 const profile = response.json().obj.profile;
                 const userId = response.json().obj._id;
               
@@ -49,9 +50,11 @@ export class ProfileService {
                         profile.intrests,
                         profile.location,
                         profile.intrestInfo,
-                        userId
+                        userId,
+                        followers
+                        
                 )
-                //console.log(transformedProfile);
+                console.log(transformedProfile);
                 return transformedProfile;
             })
             .catch((error: Response) => Observable.throw(error.json()));
@@ -67,6 +70,7 @@ export class ProfileService {
                     let transformedProfile: Profile[]=[];
                     for (let p of profiles) {
                        // console.log(this.checkUserLikedPost(post.likes,user));
+                       let followers = p.followers;
                        let profile = p.profile;
                        transformedProfile.push(new Profile(
                             profile.firstName,
@@ -80,9 +84,12 @@ export class ProfileService {
                             profile.intrests,
                             profile.location,
                             profile.intrestInfo,
-                            p._id)
+                            p._id,
+                            followers
+                        )
                     );
                 }
+                console.log(transformedProfile);
                     return transformedProfile;
                 })
                 .catch((error: Response) => Observable.throw(error.json()));

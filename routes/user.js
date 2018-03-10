@@ -127,17 +127,37 @@ router.get('/my-profile/', function(req, res) {
     
    });
 //tested 
-router.post('/follow/:id', function (req, res) {   //id: the one who is been followed 
+
+router.post('/follow', function (req, res) {   //id: the one who is been followed 
  //Also need to add an entry in notifications here.
-     User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$push: {following: mongoose.Types.ObjectId(req.param.id)}}, function (err, result) {
+ console.log(req.body.userId);
+     User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$push: {following: mongoose.Types.ObjectId(req.body.userId)}}, function (err, result1) {
         if (err) return res.send(err, 500);
-        res.status(201).json({
-          message: 'followed'
-        //  obj: result
+        User.update({_id: mongoose.Types.ObjectId(req.body.userId)}, {$push: {followers: mongoose.Types.ObjectId(req.user._id)}}, function (err, result) {
+            if (err) return res.send(err, 500);
+            res.status(201).json({
+              message: 'followed',
+              obj: result1
+          });
+          });    
       });
-      });    
-  
-  });
+      });
+
+      router.post('/unfollow', function (req, res) {   //id: the one who is been followed 
+        //Also need to add an entry in notifications here.
+        console.log(req.body.userId);
+            User.update({_id: mongoose.Types.ObjectId(req.user._id)}, {$pull: {following: mongoose.Types.ObjectId(req.body.userId)}}, function (err, result1) {
+               if (err) return res.send(err, 500);
+               User.update({_id: mongoose.Types.ObjectId(req.body.userId)}, {$pull: {followers: mongoose.Types.ObjectId(req.user._id)}}, function (err, result) {
+                   if (err) return res.send(err, 500);
+                   res.status(201).json({
+                     message: 'unfollowed',
+                     obj: result1
+                 });
+                 });    
+             });
+             });
+
   //tested
   router.get('/search-user/:term', Auth.authRedirect, function (req, res) {
     if (! req.params.term) return res.send([], 500);
