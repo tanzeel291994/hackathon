@@ -12,21 +12,22 @@ export class ModalService {
     }
 
     followProfile(profile: Profile) {
-        const body = JSON.stringify(profile);
+        //const body = JSON.stringify(profile);
         const headers = new Headers({'Content-Type': 'application/json'});
       
-        return this.http.post('http://localhost:3000/user/follow/'+profile.userId,headers)  
+        return this.http.post('http://localhost:3000/user/follow/',{userId:profile.userId})  
             .map((response: any) => {
                 const result = response.json();
+                console.log(result);
                 return result; 
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
     unfollowProfile(profile: Profile) {
        // const body = JSON.stringify(profile);
-        const headers = new Headers({'Content-Type': 'application/json'});
+      //  const headers = new Headers({'Content-Type': 'application/json'});
       
-        return this.http.post('http://localhost:3000/user/unfollow/'+profile.userId,headers)  
+        return this.http.post('http://localhost:3000/user/unfollow/',{userId:profile.userId})  
             .map((response: any) => {
                 const result = response.json();
                 return result; 

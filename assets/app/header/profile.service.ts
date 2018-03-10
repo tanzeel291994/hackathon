@@ -64,8 +64,8 @@ export class ProfileService {
             return this.http.get('http://localhost:3000/user/search-user/'+term)
                 .map((response: Response) => {
                    console.log(response);
-                    const profiles = response.json();
-                    //const userId = response.json().obj._id;
+                    const profiles = response.json().obj;
+                    const userId = response.json().userId;
                   
                     let transformedProfile: Profile[]=[];
                     for (let p of profiles) {
@@ -89,10 +89,16 @@ export class ProfileService {
                         )
                     );
                 }
-                console.log(transformedProfile);
-                    return transformedProfile;
+                   // console.log(transformedProfile);
+                    return new SearchResults(transformedProfile,userId);
                 })
                 .catch((error: Response) => Observable.throw(error.json()));
                 
             }    
+}
+
+export class SearchResults{
+   // public profiles:Profile[];
+   // public userId:string;
+    constructor(public profiles:Profile[],public userId:string){}
 }

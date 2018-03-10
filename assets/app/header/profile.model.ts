@@ -12,6 +12,6 @@ export class Profile {
             public location?:string,
             public intrestInfo?:string ,
             public userId?:string,
-            public followers?:number[]
+            public followers?:string[]
         ) {}
 }

@@ -10,9 +10,9 @@
       <div class="profile__photo">
             <img class="profile__photo--user"src="/img/user-2.jpg" alt="">
           </div>
-      <div class="profile-header"> 
-          <button class="btn btn--green post-add__btn modal-btn">Follow</button>
-          <button class="btn btn--green post-add__btn modal-btn">Connect</button>
+        <div class="profile-header"> 
+            <button class="btn btn--green post-add__btn modal-btn" *ngIf="!isFollowed" (click)="follow(profile)">Follow</button>
+            <button class="btn btn--green post-add__btn modal-btn" *ngIf="isFollowed" (click)="unfollow(profile)">Followed</button>
       </div>
     </div>
       <div class="profile-flex">

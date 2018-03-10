@@ -142,7 +142,7 @@ router.post('/follow', function (req, res) {   //id: the one who is been followe
           });    
       });
       });
-
+//tested
       router.post('/unfollow', function (req, res) {   //id: the one who is been followed 
         //Also need to add an entry in notifications here.
         console.log(req.body.userId);
@@ -170,7 +170,10 @@ router.post('/follow', function (req, res) {   //id: the one who is been followe
     ]}
     , function (err, users) {
       if (err) return res.send(err, 500);
-      res.send(users);
+      res.status(201).json({
+        userId: req.user._id,
+        obj: users
+    });
     });
   });
   

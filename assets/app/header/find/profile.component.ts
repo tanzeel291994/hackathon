@@ -19,18 +19,24 @@ import { Component, OnInit, Input } from "@angular/core";
 export class ProfileComponent implements OnInit {
    // posts: Post[];
    @Input() profile:Profile;
+   @Input() userId:string;
    closeResult: string;
    fullProfile:Profile;
+   user:string;
    constructor(private modalService: NgbModal) {}
 
     
     ngOnInit() {
      
             this.fullProfile=this.profile;
+            this.user=this.userId;
     }
     open() {
       const modalRef = this.modalService.open(NgbdModalContent);
+     
       modalRef.componentInstance.profile = this.fullProfile;
+      modalRef.componentInstance.userId = this.user;
+      
     }
       private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
@@ -41,4 +47,5 @@ export class ProfileComponent implements OnInit {
           return  `with: ${reason}`;
         }
       }
+      isFollowed
 }

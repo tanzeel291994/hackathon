@@ -1,6 +1,6 @@
 import { ModalService } from './../../modal/modal.service';
 import { NgForm } from '@angular/forms';
-import { ProfileService } from './../profile.service';
+import { ProfileService, SearchResults } from './../profile.service';
 import { ToastsManager } from 'ng2-toastr';
 import { Component, ViewContainerRef } from '@angular/core';
 import { Profile } from '../profile.model';
@@ -22,13 +22,17 @@ export class FindComponent {
         this.toastr.setRootViewContainerRef(viewContainerRef);
     }
     profiles:Profile[];
+    userId:string;
+   // searchResults:SearchResults;
     onSubmit(form: NgForm) {
            let term = form.value.term;
             this.profileService.searchProfile(term)
                 .subscribe(
-                    (profile: Profile[]) => {
-                        this.profiles = profile; 
-                        console.log(this.profiles);
+                    (searchResults: SearchResults) => {
+                       // this.searchResults=searchResults
+                        this.profiles = searchResults.profiles; 
+                        this.userId = searchResults.userId;
+                       // console.log(searchResults);
                     }
                 );
 
