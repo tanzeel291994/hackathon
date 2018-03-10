@@ -7,7 +7,8 @@ import { Profile } from '../profile.model';
 
 @Component({
     selector: 'my-profile',
-    templateUrl: './myprofile.component.html'
+    templateUrl: './myprofile.component.html',
+    styles:[`select.form-control{height:34px !important; }`]
 })
 export class MyProfileComponent {
      profile: Profile;

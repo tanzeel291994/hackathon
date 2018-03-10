@@ -1,3 +1,6 @@
+import { NgbdModalContent } from './modal/model.component';
+
+import { ModalService } from './modal/modal.service';
 import { ProfileComponent } from './header/find/profile.component';
 import { ProfileService } from './header/profile.service';
 import { PostListComponent } from './post/post-list.component';
@@ -25,6 +28,8 @@ import { PostComponent } from './post/post.component';
 import { FindComponent } from './header/find/find.component';
 import { MyProfileComponent } from './header/me/myprofile.component';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
     declarations: [
         AppComponent,
@@ -35,6 +40,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
         PostAddComponent,
         MyProfileComponent,
         ProfileComponent,
+        NgbdModalContent,
         PostListComponent,
         MeComponent,
         FindComponent,
@@ -45,6 +51,7 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
         TimeAgoPipe,
         SigninComponent
     ],
+    entryComponents: [NgbdModalContent],
     imports: [
         BrowserModule,
         FormsModule,
@@ -52,9 +59,10 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
         routing,
         ReactiveFormsModule,
         HttpModule,
+        NgbModule.forRoot(),
         ToastModule.forRoot()
     ],
-    providers: [AuthService,PostService,ProfileService],
+    providers: [AuthService,PostService,ProfileService,ModalService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

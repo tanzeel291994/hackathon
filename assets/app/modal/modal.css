@@ -1,0 +1,16 @@
+.modal.fade .modal-dialog{
+  transform: translate(0,50%) !important;
+}
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+}
+.modal-btn{
+  display: block;
+}
+.profile-header{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}

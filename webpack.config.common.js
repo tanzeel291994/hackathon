@@ -8,7 +8,13 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts']
     },
-
+    plugins: [
+        new webpack.ProvidePlugin({
+          jQuery: 'jquery',
+          $: 'jquery',
+          jquery: 'jquery'
+        })
+      ],
     module: {
         rules: [
             {

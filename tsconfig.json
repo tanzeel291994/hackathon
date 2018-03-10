@@ -7,6 +7,9 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types": [
+      "jquery"
+    ],
     "lib": [
       "es5",
       "dom"
