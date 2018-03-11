@@ -89,6 +89,34 @@ router.get('/u/:userId', function(req, res, next) {
 router.put('/update', function(req, res) {
     // create mongose method to update a existing record into collection
     let id = req.user._id;
+    //console.log(id);
+    var data = {
+        firstName : req.body.firstName,
+        lastName : req.body.lastName,
+        location : req.body.location,
+        occupation : req.body.occupation,
+        qualification : req.body.qualification,
+        gender : req.body.gender,
+        intrests : req.body.intrests,
+        language : req.body.language,
+        status : req.body.status,
+        yob : req.body.yob,
+        field : req.body.field,
+        intrestInfo:req.body.intrestInfo
+
+    }
+    //console.log(data);
+   User.findByIdAndUpdate(id, {profile:data},{new: true}, function(err, user) {
+    if (err) throw err;
+    //res.send('Successfully! user updated - '+user);
+    res.json(user);
+    });
+});
+
+//tested
+router.post('/createProfile', function(req, res) {
+    // create mongose method to update a existing record into collection
+    let id = req.body.userId;
     console.log(id);
     var data = {
         firstName : req.body.firstName,

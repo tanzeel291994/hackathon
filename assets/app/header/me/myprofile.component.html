@@ -20,13 +20,13 @@
               <div class="form-group u-margin-right-small">
                   <label for="interests1">1.Interest</label>
                   <select class="form-control" id="interests1" [ngModel]="profile?.intrests[0]" name="interests1">
-                    <option *ngFor="let i of Intrests" [ngValue]="i">{{i}}</option>
+                    <option *ngFor="let i of values.Intrests" [ngValue]="i">{{i}}</option>
                   </select>
               </div>
               <div class="form-group u-margin-right-small">
                      <label for="interests2" class="">2.Interests</label>
                      <select class="form-control" id="interests2" [ngModel]="profile?.intrests[1]"  name="interests2" required>
-                        <option *ngFor="let i of Intrests" [ngValue]="i">{{i}}</option>
+                        <option *ngFor="let i of values.Intrests" [ngValue]="i">{{i}}</option>
                       </select>
               </div>
               <div class="form-group u-flex-25">
@@ -40,7 +40,7 @@
               <div class="form-group u-margin-right-small">
                   <label for="status">Status</label>
                   <select class="form-control" id="status" [ngModel]="profile?.status"  name="status" required>
-                    <option *ngFor="let i of Status" [ngValue]="i">{{i}}</option>
+                    <option *ngFor="let i of values.Status" [ngValue]="i">{{i}}</option>
                   </select>
               </div>
               <div class="form-group  u-margin-right-small">
@@ -50,13 +50,13 @@
               <div class="form-group  u-margin-right-small">
                       <label for="language">Mother Tounge</label>
                       <select class="form-control" id="language" [ngModel]="profile?.language"  name="language" required>
-                        <option *ngFor="let i of Languages" [ngValue]="i">{{i}}</option>
+                        <option *ngFor="let i of values.Languages" [ngValue]="i">{{i}}</option>
                       </select>
               </div>
               <div class="form-group">
                       <label for="location">Location</label>
                       <select class="form-control" id="location" [ngModel]="profile?.location"  name="location" required>
-                        <option *ngFor="let i of Locations" [ngValue]="i">{{i}}</option>
+                        <option *ngFor="let i of values.Locations" [ngValue]="i">{{i}}</option>
                       </select>
               </div>
           </div>
@@ -66,7 +66,7 @@
               <div class="form-group u-margin-right-small">
                   <label for="qualification">Qualification</label>
                   <select class="form-control" id="qualification" [ngModel]="profile?.qualification"  name="qualification" required>
-                    <option *ngFor="let i of Qualifications" [ngValue]="i">{{i}}</option>
+                    <option *ngFor="let i of values.Qualifications" [ngValue]="i">{{i}}</option>
                   </select>
               </div>
           <div class="form-group u-margin-right-small">
@@ -76,7 +76,7 @@
           <div class="form-group">
               <label for="occupation">Occupation</label>
               <select class="form-control" id="occupation" [ngModel]="profile?.occupation"  name="occupation" required>
-                <option *ngFor="let i of Occupations" [ngValue]="i">{{i}}</option>
+                <option *ngFor="let i of values.Occupations" [ngValue]="i">{{i}}</option>
               </select>
           </div>
           </div>

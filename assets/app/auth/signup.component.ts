@@ -1,17 +1,23 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { AuthService } from "./auth.service";
 import { User } from "./user.model";
+import { Router } from "@angular/router";
+import { ToastsManager } from "ng2-toastr";
 
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html'
 })
 export class SignupComponent implements OnInit {
+    viewContainerRef: ViewContainerRef;
     myForm: FormGroup;
 
-    constructor(private authService: AuthService) {}
+    constructor(public toastr: ToastsManager, viewContainerRef: ViewContainerRef,private authService: AuthService,private router: Router) {
+        this.viewContainerRef = viewContainerRef;
+        this.toastr.setRootViewContainerRef(viewContainerRef);
+    }
 
     onSubmit() {
         const user = new User(
@@ -22,8 +28,8 @@ export class SignupComponent implements OnInit {
         );
         this.authService.signup(user)
             .subscribe(
-                data => console.log(data),
-                error => console.error(error)
+                data =>  this.router.navigate(['auth/profile',data.obj._id]),
+                error => this.toastr.error('It seems you are alreayd registered', 'Oops!')
             );
         this.myForm.reset();
     }

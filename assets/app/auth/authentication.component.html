@@ -6,11 +6,14 @@
                     <router-outlet></router-outlet>
                     
                     <div class="form__group">
-                        <a class="form__anchor" [routerLink]="['signup']">Click here for register</a>
+                        <a class="form__anchor" [routerLinkActive]="['display-none']" [routerLink]="['signup']">Click here for register</a>
                     </div>
                     <div class="form__group">
-                        <a class="form__anchor" [routerLink]="['signin']">Click here for login</a>
+                        <a class="form__anchor" [routerLinkActive]="['display-none']" [routerLink]="['signin']">Click here for login</a>
                     </div>
+                    <div class="form__group">
+                            <a class="form__anchor" [routerLinkActive]="['display-none']" [routerLink]="['profile']"></a>
+                        </div>
         </div>    
        
     </div>

@@ -1,0 +1,88 @@
+<h3 class="register-heading"> Just 3 mins to fill details </h3>
+
+<div class="profile-box">
+        <div class="profile__photo">
+           
+            
+          </div>
+          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="profile-flex">
+              <div class="form-group profile-flex-2 u-margin-right-small">
+                      <label for="firstName">First Name</label>
+                      <input type="text" class="form-control" id="firstName" ngModel name="firstName" required>
+
+              </div>
+              <div class="form-group profile-flex-2">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" class="form-control" ngModel id="lastName" name="lastName">
+              </div>
+      </div>
+      <div class="form-group">
+              <div class="profile-flex">
+                  <div class="form-group u-margin-right-small">
+                      <label for="interests1">1.Interest</label>
+                      <select class="form-control" id="interests1" ngModel name="interests1">
+                        <option *ngFor="let i of values.Intrests" [ngValue]="i">{{i}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group u-margin-right-small">
+                         <label for="interests2" class="">2.Interests</label>
+                         <select class="form-control" id="interests2" ngModel  name="interests2" required>
+                            <option *ngFor="let i of values.Intrests" [ngValue]="i">{{i}}</option>
+                          </select>
+                  </div>
+                  <div class="form-group u-flex-25">
+                          <label for="intrestInfo" class="u-opacity-none">Interests</label>
+                          <input type="text" class="form-control" id="intrestInfo" ngModel name="intrestInfo" placeholder="More about your Interests">
+                  </div>
+              </div>
+      </div>
+      <div class="form-group">
+              <div class="profile-flex">
+                  <div class="form-group u-margin-right-small">
+                      <label for="status">Status</label>
+                      <select class="form-control" id="status" ngModel  name="status" required>
+                        <option *ngFor="let i of values.Status" [ngValue]="i">{{i}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group  u-margin-right-small">
+                    <label for="year">Year of birth</label>
+                    <input type="number" class="form-control" id="year" ngModel name="year" placeholder="Ex: 1994">
+                </div>
+                  <div class="form-group  u-margin-right-small">
+                          <label for="language">Mother Tounge</label>
+                          <select class="form-control" id="language" ngModel  name="language" required>
+                            <option *ngFor="let i of values.Languages" [ngValue]="i">{{i}}</option>
+                          </select>
+                  </div>
+                  <div class="form-group">
+                          <label for="location">Location</label>
+                          <select class="form-control" id="location" ngModel  name="location" required>
+                            <option *ngFor="let i of values.Locations" [ngValue]="i">{{i}}</option>
+                          </select>
+                  </div>
+              </div>
+      </div>
+      <div class="form-group">
+              <div class="profile-flex">
+                  <div class="form-group u-margin-right-small">
+                      <label for="qualification">Qualification</label>
+                      <select class="form-control" id="qualification" ngModel  name="qualification" required>
+                        <option *ngFor="let i of values.Qualifications" [ngValue]="i">{{i}}</option>
+                      </select>
+                  </div>
+              <div class="form-group u-margin-right-small">
+                      <label for="field">Field</label>
+                      <input type="text" class="form-control" id="field" name="field" ngModel>
+              </div>
+              <div class="form-group">
+                  <label for="occupation">Occupation</label>
+                  <select class="form-control" id="occupation" ngModel  name="occupation" required>
+                    <option *ngFor="let i of values.Occupations" [ngValue]="i">{{i}}</option>
+                  </select>
+              </div>
+              </div>
+      </div>
+      <button class="btn btn--green profile-flex__btn">Save</button>
+      </form>
+      </div>

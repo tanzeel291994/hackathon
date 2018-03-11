@@ -1,3 +1,4 @@
+import { RegistrationComponent } from './auth/registration.component';
 import { MyPostListComponent } from './header/me/mypost-list.component';
 import { MyPostComponent } from './header/me/mypost.component';
 import { NgbdModalContent } from './modal/model.component';
@@ -49,6 +50,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         MyPostListComponent,
         MyProfileComponent,
         FindComponent,
+        RegistrationComponent,
         FollowComponent,
         HomeComponent,
         LogoutComponent,

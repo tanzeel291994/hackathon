@@ -1,3 +1,4 @@
+import { Values } from './../values';
 import { NgForm } from '@angular/forms';
 import { PostService } from './../../post/post.service';
 import { ToastsManager } from 'ng2-toastr';
@@ -23,6 +24,7 @@ export class MyProfileComponent {
     {
         this.viewContainerRef = viewContainerRef;
         this.toastr.setRootViewContainerRef(viewContainerRef);
+        this.values=new Values();
     }
     onSubmit(form: NgForm) {
             const profile = new Profile(form.value.firstName,

@@ -7,7 +7,8 @@ import { ToastsManager } from 'ng2-toastr';
 
 @Component({
     selector: 'app-post-add',
-    templateUrl:'./post-add.component.html'
+    templateUrl:'./post-add.component.html',
+    styles:[`select.form-control{height:34px !important; }`]
 })
 export class PostAddComponent {
     post: Post;

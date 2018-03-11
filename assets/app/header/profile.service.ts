@@ -28,6 +28,17 @@ export class ProfileService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    createProfile(profile: Profile) {
+        const body = JSON.stringify(profile);
+        const headers = new Headers({'Content-Type': 'application/json'});
+      //  const id = userId;
+        return this.http.post('http://localhost:3000/user/createProfile', body, {headers: headers})  //check this
+            .map((response: Response) => {
+                const result = response.json();
+                return result; 
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
     getProfile() {
         return this.http.get('http://localhost:3000/user/my-profile')
             .map((response: Response) => {
