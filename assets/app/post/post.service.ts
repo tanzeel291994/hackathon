@@ -65,6 +65,35 @@ export class PostService {
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
+    getMyPosts() {
+        return this.http.get('http://localhost:3000/POST/myposts')
+            .map((response: Response) => {
+                const posts = response.json().obj.posts;
+                const user = response.json().obj.user._id;
+               
+                let transformedPosts: Post[] = [];
+                for (let post of posts) {
+                   // console.log(this.checkUserLikedPost(post.likes,user));
+                    transformedPosts.push(new Post(
+                        this.getPostType(post.type),
+                        post.title,
+                        post.text,
+                        this.checkUserLikedPost(post.likes,user),
+                        this.checkUserInterestedPost(post.intrested,user),
+                        post.user.profile.firstName+" "+post.user.profile.lastName ,
+                        post.user.profile.occupation, ////edit this from database
+                        post.created_at,
+                        post.likes.length,
+                        post.intrested.length,                        
+                        post._id,
+                        post.user._id)
+                    );
+                }
+                this.posts = transformedPosts;
+                return transformedPosts;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
 
     checkUserLikedPost(likesArray:any,userId:any){
         return likesArray.indexOf(userId) > -1;

@@ -1,3 +1,5 @@
+import { MyPostListComponent } from './header/me/mypost-list.component';
+import { MyPostComponent } from './header/me/mypost.component';
 import { NgbdModalContent } from './modal/model.component';
 
 import { ModalService } from './modal/modal.service';
@@ -43,6 +45,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         NgbdModalContent,
         PostListComponent,
         MeComponent,
+        MyPostComponent,
+        MyPostListComponent,
+        MyProfileComponent,
         FindComponent,
         FollowComponent,
         HomeComponent,

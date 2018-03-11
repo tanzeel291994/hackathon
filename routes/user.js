@@ -177,6 +177,7 @@ router.post('/follow', function (req, res) {   //id: the one who is been followe
     });
   });
   
+  //tested
   router.get('/whotoFollow/', function (req, res) {
     if (! req.user._id) return res.send([], 500);
     User.findById(req.user._id, function(err, user) {

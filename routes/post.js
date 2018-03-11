@@ -25,6 +25,44 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.post('/interstedProfiles', function(req, res, next) {
+  if (!req.user) {
+      return res.send("Please login again");
+  }
+  var postId=req.body.postId;
+  Post.findOne({_id: postId}).exec(function (err, post) {
+    if (err) return res.send(err);
+    User.find({_id: {$in: post.intrested}}).populate('user').sort({created_at: -1}).exec(function (err, users) {
+      if (err) return res.send(err);
+      res.status(200).json({
+          message: 'Success',
+          obj: {users:users ,user:req.user}
+      });
+  });
+});
+
+ 
+
+});
+
+router.get('/myposts', function(req, res, next) {
+  if (!req.user) {
+      return res.send("Please login again");
+  }
+ 
+  User.findById(req.user._id, function(err, user) {
+    if (err) res.send(err)
+
+  Post.find({_id: {$in: user.posts}}).populate('user').sort({created_at: -1}).exec(function (err, posts) {
+      if (err) return res.send(err);
+      res.status(200).json({
+          message: 'Success',
+          obj: {posts:posts ,user:req.user}
+      });
+  });
+});
+});
+
 //tested
 router.post('/add',Auth.authJson ,function (req, res,next) {
  //console.log(User);
