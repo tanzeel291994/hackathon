@@ -1,3 +1,4 @@
+import { ProfileService, SearchResults } from './../profile.service';
 
 import { ToastsManager } from 'ng2-toastr';
 
@@ -23,9 +24,9 @@ import { Profile } from '../profile.model';
 })
 export class MyPostComponent {
     @Input() post: Post;
-  
+    profiles:Profile[];
     private viewContainerRef: ViewContainerRef;
-    constructor(public toastr: ToastsManager, viewContainerRef: ViewContainerRef,private postService: PostService) 
+    constructor(public toastr: ToastsManager, viewContainerRef: ViewContainerRef,private postService: PostService,private profileService:ProfileService) 
     {
         this.viewContainerRef = viewContainerRef;
         this.toastr.setRootViewContainerRef(viewContainerRef);
@@ -37,9 +38,16 @@ export class MyPostComponent {
     }
     
 */  
-    showIntrestedProfiles(post:Post){
-        
-    }
+showIntrestedProfiles(post1: Post) {
+    //const post = new Post(form.value.type,form.value.title,form.value.text);
+    this.profileService.showIntrestedProfiles(post1)
+    .subscribe(
+        (searchResults: SearchResults) => {
+            this.profiles = searchResults.profiles;
+        }
+    );
+}
+    
 
     postLike(post1: Post) {
         //const post = new Post(form.value.type,form.value.title,form.value.text);

@@ -183,9 +183,9 @@ router.post('/follow', function (req, res) {   //id: the one who is been followe
     User.findById(req.user._id, function(err, user) {
         if (err) res.send(err)
         User.find({ $or : [
-        {"profile.intrests":user.profile.intrests[0],_id: {$ne: req.user._id}},
-        {"profile.intrests":user.profile.intrests[1],_id: {$ne: req.user._id}}, //could be done better
-        {"profile.location":user.profile.location,_id: {$ne: req.user._id}}
+        {$and:[{"profile.intrests":user.profile.intrests[0]},{_id: {$ne: req.user._id}},{followers:{$ne:mongoose.Types.ObjectId( req.user._id)}}]},
+        {$and:[{"profile.intrests":user.profile.intrests[1]},{_id: {$ne: req.user._id}},{followers:{$ne: mongoose.Types.ObjectId(req.user._id)}}]}, //could be done better
+        {$and:[{"profile.location":user.profile.location},{_id: {$ne: req.user._id}},{followers:{$ne: mongoose.Types.ObjectId(req.user._id)}}]}
         ]}
         , function (err, users) {
           if (err) return res.send(err, 500);

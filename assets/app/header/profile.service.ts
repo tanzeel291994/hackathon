@@ -3,6 +3,7 @@ import { Http, Response, Headers } from "@angular/http";
 import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
+import { Post } from '../post/post.model';
 
 
 
@@ -94,7 +95,77 @@ export class ProfileService {
                 })
                 .catch((error: Response) => Observable.throw(error.json()));
                 
-            }    
+            }
+            showIntrestedProfiles(post:Post) {
+                return this.http.post('http://localhost:3000/post/showIntrestedProfiles/',{postId:post.postId})
+                    .map((response: Response) => {
+                       console.log(response);
+                        const profiles = response.json().obj.users;
+                        const userId = response.json().obj.user;
+                      
+                        let transformedProfile: Profile[]=[];
+                        for (let p of profiles) {
+                           // console.log(this.checkUserLikedPost(post.likes,user));//  obj: {users:users ,user:req.user._id}
+                           let followers = p.followers;
+                           let profile = p.profile;
+                           transformedProfile.push(new Profile(
+                                profile.firstName,
+                                profile.lastName,
+                                profile.language,
+                                profile.yob,
+                                profile.status,
+                                profile.occupation,
+                                profile.qualification,
+                                profile.field,
+                                profile.intrests,
+                                profile.location,
+                                profile.intrestInfo,
+                                p._id,
+                                followers
+                            )
+                        );
+                    }
+                       // console.log(transformedProfile);
+                        return new SearchResults(transformedProfile,userId);
+                    })
+                    .catch((error: Response) => Observable.throw(error.json()));
+                    
+                } 
+                whoToFollow() {
+                    return this.http.get('http://localhost:3000/user/whoToFollow/')
+                        .map((response: Response) => {
+                           console.log(response);
+                            const profiles = response.json().obj;
+                            const userId = response.json().userId;
+                          
+                            let transformedProfile: Profile[]=[];
+                            for (let p of profiles) {
+                               // console.log(this.checkUserLikedPost(post.likes,user));//  obj: {users:users ,user:req.user._id}
+                               let followers = p.followers;
+                               let profile = p.profile;
+                               transformedProfile.push(new Profile(
+                                    profile.firstName,
+                                    profile.lastName,
+                                    profile.language,
+                                    profile.yob,
+                                    profile.status,
+                                    profile.occupation,
+                                    profile.qualification,
+                                    profile.field,
+                                    profile.intrests,
+                                    profile.location,
+                                    profile.intrestInfo,
+                                    p._id,
+                                    followers
+                                )
+                            );
+                        }
+                           // console.log(transformedProfile);
+                            return new SearchResults(transformedProfile,userId);
+                        })
+                        .catch((error: Response) => Observable.throw(error.json()));
+                        
+                    }       
 }
 
 export class SearchResults{

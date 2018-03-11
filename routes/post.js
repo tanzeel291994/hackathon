@@ -25,6 +25,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
+//tested
 router.post('/interstedProfiles', function(req, res, next) {
   if (!req.user) {
       return res.send("Please login again");
@@ -36,7 +37,7 @@ router.post('/interstedProfiles', function(req, res, next) {
       if (err) return res.send(err);
       res.status(200).json({
           message: 'Success',
-          obj: {users:users ,user:req.user}
+          obj: {users:users ,user:req.user._id}
       });
   });
 });
