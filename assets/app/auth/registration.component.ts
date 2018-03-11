@@ -51,7 +51,7 @@ export class RegistrationComponent {
             form.value.field == "")
             {
                 this.toastr.error('Please fill the complete form ,later you could update it', 'Oops!')
-                //return;
+                return;
             }
             const profile = new Profile(form.value.firstName,
                 form.value.lastName,
