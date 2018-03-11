@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileService, SearchResults } from './../profile.service';
 
 import { ToastsManager } from 'ng2-toastr';
@@ -6,6 +7,7 @@ import { Component, Input, ViewContainerRef } from '@angular/core';
 import { Post } from '../../post/post.model';
 import { PostService } from '../../post/post.service';
 import { Profile } from '../profile.model';
+import { NgbdModalContent } from '../../modal/model.component';
 
 @Component({
     selector: 'app-my-post',
@@ -25,8 +27,9 @@ import { Profile } from '../profile.model';
 export class MyPostComponent {
     @Input() post: Post;
     profiles:Profile[];
+    userId:string;
     private viewContainerRef: ViewContainerRef;
-    constructor(public toastr: ToastsManager, viewContainerRef: ViewContainerRef,private postService: PostService,private profileService:ProfileService) 
+    constructor(public toastr: ToastsManager,private modalService:NgbModal, viewContainerRef: ViewContainerRef,private postService: PostService,private profileService:ProfileService) 
     {
         this.viewContainerRef = viewContainerRef;
         this.toastr.setRootViewContainerRef(viewContainerRef);
@@ -44,51 +47,22 @@ showIntrestedProfiles(post1: Post) {
     .subscribe(
         (searchResults: SearchResults) => {
             this.profiles = searchResults.profiles;
+            this.userId=searchResults.userId;
         }
     );
 }
-    
+open(profile:Profile) {
+    const modalRef = this.modalService.open(NgbdModalContent);
+   
+    modalRef.componentInstance.profile = profile;
+    modalRef.componentInstance.userId = this.userId;
+ 
+  }
 
-    postLike(post1: Post) {
-        //const post = new Post(form.value.type,form.value.title,form.value.text);
-        this.postService.likePost(post1)
-            .subscribe(
-                data => {this.toastr.success('Post liked', 'Success!'),post1.liked=true,post1.postlikes=post1.postlikes+1},
-                error =>  this.toastr.error('This is not good!', 'Oops!')
-            );
-    }
-    postInterest(post1: Post) {
-        //const post = new Post(form.value.type,form.value.title,form.value.text);
-        this.postService.intrestPost(post1)
-            .subscribe(
-                data => {this.toastr.success('Post liked', 'Success!'),post1.intrested=true,post1.postintrests=post1.postintrests+1},
-                error =>  this.toastr.error('This is not good!', 'Oops!')
-            );
-    }
-    postunLike(post1: Post) {
-        //const post = new Post(form.value.type,form.value.title,form.value.text);
-        this.postService.unLikePost(post1)
-            .subscribe(
-                data => {this.toastr.success('Post interested', 'Success!'),post1.liked=false,post1.postlikes=post1.postlikes-1},
-                error =>  this.toastr.error('This is not good!', 'Oops!')
-            );
-    }
-    postunInterest(post1: Post) {
-        //const post = new Post(form.value.type,form.value.title,form.value.text);
-        this.postService.unintrestPost(post1)
-            .subscribe(
-                data => {this.toastr.success('Post not interested', 'Success!'),post1.intrested=false,post1.postintrests=post1.postintrests-1},
-                error =>  this.toastr.error('This is not good!', 'Oops!')
-            );
-    }
     onDelete() {
         this.postService.deletePost(this.post)
             .subscribe(
                 result => console.log(result)
             );
-    }
-
-    belongsToUser() {
-        return localStorage.getItem('userId') == this.post.userId;
     }
 }

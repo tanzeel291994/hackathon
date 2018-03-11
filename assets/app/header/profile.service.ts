@@ -97,7 +97,7 @@ export class ProfileService {
                 
             }
             showIntrestedProfiles(post:Post) {
-                return this.http.post('http://localhost:3000/post/showIntrestedProfiles/',{postId:post.postId})
+                return this.http.post('http://localhost:3000/post/interstedProfiles/',{postId:post.postId})
                     .map((response: Response) => {
                        console.log(response);
                         const profiles = response.json().obj.users;

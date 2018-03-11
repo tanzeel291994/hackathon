@@ -12,7 +12,7 @@
        <p class="post__text">{{post.text}} </p>
     <!--<img src="/img/hotel-1.jpg" alt="" class="post__img">-->
     <div class="people-intrested">
-        <a href="#" *ngFor="let p of Profiles">{{p.firstName}}</a>
+        <a (click)="open(p)" [routerLink]="" *ngFor="let p of profiles">{{p.firstName}}</a>
     </div>
    </div>
    <div class="post__actions">
@@ -26,7 +26,7 @@
          </button>
     </div>-->
     <div class="post__tool">
-       <a (click)='showIntrestedProfiles(post)'> <span> See people who showed intrest :{{post.postintrests}}</span></a> 
+       <a [routerLink]="" (click)='showIntrestedProfiles(post)'> <span> See people who showed intrest :{{post.postintrests}}</span></a> 
     </div>
     <div class="post__tool u-align-flex-end">
         <button class="post__tool-btn tool-tip" (click)="delete(post)">
