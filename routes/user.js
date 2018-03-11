@@ -144,6 +144,10 @@ router.post('/createProfile', function(req, res) {
 //tested
 router.get('/my-profile/', function(req, res) {
     let id = req.user._id;
+    if(id == null)
+    res.status(404).json({
+        message: 'Not found'
+    });
     User.findById(id, function(err, user) {
     if (err)
     res.send(err)

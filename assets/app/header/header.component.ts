@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
@@ -9,14 +10,12 @@ import { Profile } from './profile.model';
 export class HeaderComponent {
 profile:Profile;
 
-    constructor(private profileService: ProfileService){}
+    constructor(private profileService: ProfileService,private router:Router){}
       ngOnInit() {
         this.profileService.getProfile()
             .subscribe(
-                (profile: Profile) => {
-                    console.log(profile);
-                    this.profile = profile;
-                }
+                data =>{this.profile=data,console.log(data)},
+                error => this.router.navigateByUrl('/auth/signin'),
             );
            
     }
