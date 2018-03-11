@@ -3,7 +3,7 @@ export class Profile {
             public firstName?: string,
             public lastName?: string,
             public language?:string,
-            public yob?:number,
+            public year?:number,
             public status?:string,
             public occupation?:string,
             public qualification?:string,

@@ -27,6 +27,7 @@ ngOnInit() {
      
   this.vprofile=this.profile;
   this.vuserId=this.userId;
+  this.checkIfFollows(this.vprofile,this.userId);
 }
   follow(profile: Profile) {
    
@@ -38,9 +39,9 @@ ngOnInit() {
 }
 checkIfFollows(profile:Profile,userId:string)
 {
-  console.log("--------");
-  console.log(profile);
-  console.log(userId);
+ // console.log("--------");
+  //console.log(profile);
+  //console.log(userId);
   if (profile.followers == null)
   {
     this.isFollowed=false;

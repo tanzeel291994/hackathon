@@ -56,7 +56,7 @@ export class RegistrationComponent {
             const profile = new Profile(form.value.firstName,
                 form.value.lastName,
                 form.value.language,
-                form.value.yob,
+                form.value.year,
                 form.value.status,
                 form.value.occupation,
                 form.value.qualification,
