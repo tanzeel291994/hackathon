@@ -120,16 +120,16 @@ router.get('/:id/un-intrest', function (req, res, next) {
   });
 });
 
-/*
 
-  router.delete('/:id', key, function (req, res) {
+
+  router.delete('/delete/:id', function (req, res) {
     Post.find({_id: mongoose.Types.ObjectId(req.params.id)}).remove(function (err, result) {
       if (err) return res.send(err, 500);
       return res.send(result);
     });
   });
 
-
+/*
   router.post('/photo', key, upload.single('file'), function (req, res) {
     var post = new Post({
       text: req.body.text,

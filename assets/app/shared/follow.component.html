@@ -1,6 +1,4 @@
-<nav class="sidebar">
-    <h3 class="heading-tertiary u-padding-left-medium">You may want to follow</h3>
-<ul class="side-nav">
+
 <li class="side-nav__item side-nav__item--active" *ngFor="let profile of profiles">
     <a (click)="open(profile)" [routerLink]="" class="side-nav__link" >
             <figcaption class="review__user">
@@ -13,5 +11,3 @@
                 </figcaption>
     </a>
 </li>
-</ul>
-</nav>

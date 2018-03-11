@@ -132,26 +132,11 @@ export class PostService {
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
-/*
-    editMessage(message: Message) {
-        this.messageIsEdit.emit(message);
-    }
-
-    updateMessage(message: Message) {
-        const body = JSON.stringify(message);
-        const headers = new Headers({'Content-Type': 'application/json'});
-        const token = localStorage.getItem('token')
-            ? '?token=' + localStorage.getItem('token')
-            : '';
-        return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, {headers: headers})
-            .map((response: Response) => response.json())
-            .catch((error: Response) => Observable.throw(error.json()));
-    }
-*/
+   
     deletePost(post: Post) {
         this.posts.splice(this.posts.indexOf(post), 1);
         return this.http.delete('http://localhost:3000/post/delete/' + post.postId)
-            .map((response: Response) => response.json())
+            .map((response: Response) => response.json( ))
             .catch((error: Response) => Observable.throw(error.json()));
     }
 }

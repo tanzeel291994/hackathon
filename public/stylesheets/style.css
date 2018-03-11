@@ -55,6 +55,7 @@ body {
   margin-bottom: 6rem; }
   .heading-primary--main {
     display: block;
+    margin-bottom: 3rem;
     font-size: 6rem;
     font-weight: 400;
     letter-spacing: 3.5rem;
@@ -179,6 +180,9 @@ body {
 .btn--white {
   background-color: #fff;
   color: #777; }
+  .btn--white:hover{
+    color:#777 !important;
+  }
   .btn--white::after {
     background-color: #fff; }
 
@@ -1001,7 +1005,9 @@ body {
     padding: 6rem; }
 
 .main-wrapper {
-  background-color: #eb2f64;
+  background-image: linear-gradient(to right bottom, rgba(255, 51, 107, 0.2), rgba(186, 38, 80, 0.2)), url(../img/womenmp.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh; }
 
 .app-container {

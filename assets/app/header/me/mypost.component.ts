@@ -59,10 +59,10 @@ open(profile:Profile) {
  
   }
 
-    onDelete() {
-        this.postService.deletePost(this.post)
+  delete(post:Post) {
+        this.postService.deletePost(post)
             .subscribe(
-                result => console.log(result)
+                result => this.toastr.success('Post deleted', 'Success!'),
             );
     }
 }
