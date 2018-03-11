@@ -1018,12 +1018,14 @@ body {
 
 .sidebar {
   flex: 0 0 30%;
+  min-height: 750px;
+  overflow-y: auto;
   background-color: #eb2f64; }
 
 .content {
   display: flex;
   background-color: #ba2650;
-  min-height: 500px; }
+  min-height: 750px; }
 
 .my-view {
   flex: 1; }
@@ -1098,8 +1100,8 @@ body {
   flex: 1;
   margin-right: 3rem;
   margin: 3rem;
-  max-height: 1000px;
-  overflow: auto; }
+  max-height: 900px;
+   }
 
 .connections {
   flex: 1; }
